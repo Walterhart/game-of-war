@@ -1,4 +1,61 @@
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
+    background-color: #004C00;
+    font-family: 'Playfair Display', serif;
+    height: 100vh;
+    align-items: center;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#new-deck, #draw-cards{
+    align-self: center;
+}
+.button {
+
+  background-color: #FF0000;
+  color: #FFFFFF;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin-right: 0.5em;
+}
+
+.button:hover {
+
+    background-color: #FF3333;
+}
+
+
+.button.green {
+    background-color: #00FF00;
+    color: #FFFFFF;
+
+}
+
+.button.green:hover {
+    background-color: #33FF33;
+}
+
+
+div.card-slot {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 120px;
+    width: calc(120px * 5 / 7);
+}
+
+div.card-slot:nth-of-type(1) {
+    margin-bottom: 50px;
+}
+img.card{
+    width: 100%;
 }
