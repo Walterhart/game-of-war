@@ -3,7 +3,8 @@ const imageContainer = document.getElementById("image-cards");
 const newDeckBtn =document.getElementById("new-deck")
 const drawBtn =document.getElementById("draw-cards")
 let deckId
-function getNewDeck() {
+
+const getNewDeck = () => {
   fetch("https://deckofcardsapi.com/api/deck/new/")
     .then((res) => res.json())
     .then((data) => {
@@ -12,7 +13,7 @@ function getNewDeck() {
     });
 }
 
-function getImage(deck) {
+const getImage = (deck)=> {
   console.log(deck);
   const cardSlotsHTML = deck.cards.map(
     (card) => `
