@@ -35,7 +35,7 @@ const determineWinner = (cpuCard, playerCard) =>{
     const playerCardValue = cardValues[playerCard]
     if( cpuCardValue<playerCardValue){
         scoreBored["Player"]++;
-        playerScoreText.innerText= `Player score: ${scoreBored["Player"]}`
+        playerScoreText.innerText= `My score: ${scoreBored["Player"]}`
         return  `Player Wins the Round!`
     }
     else if(  cpuCardValue>playerCardValue){
@@ -61,6 +61,13 @@ const handleDrawCards = () => {
       winnerHTMLText.textContent=winnerMessage;
       if(data.remaining === 0){
         drawBtn.disabled = true
+        if (scoreBored["Computer"]< scoreBored["Player"]) {
+          winnerHTMLText.innerText =`Congratulation You Win!`
+        } else if (scoreBored["Computer"]>scoreBored["Player"]) {
+            winnerHTMLText.innerText =`Better Luck Next Time, You Lose!`
+        } else {
+            winnerHTMLText.innerText =`WAR`
+        }
       }
     });
 };
@@ -82,6 +89,7 @@ const getImage = (deck) => {
       <img src="${card.image}" class="card" />
   `
   );
+  
   const cardSlots = imageContainer.children;
 
   cardSlotsHTML.forEach((html, index) => {
