@@ -3,6 +3,7 @@ const imageContainer = document.getElementById("image-cards");
 const newDeckBtn = document.getElementById("new-deck");
 const drawBtn = document.getElementById("draw-cards");
 const winnerHTMLText= document.getElementById("winner-message")
+const reamingCardsText = document.getElementById("remaining-cards")
 let deckId;
  
 const determineWinner = (cpuCard, playerCard) =>{
@@ -43,6 +44,7 @@ const handleDrawCards = () => {
       const cpuCard = data.cards[0].value;
       const playerCard = data.cards[1].value;
       const winnerMessage=determineWinner(cpuCard, playerCard);
+      reamingCardsText.textContent =`Remaining Cards:  ${data.remaining}`
       winnerHTMLText.textContent=winnerMessage;
     });
 };
@@ -51,6 +53,7 @@ const handleNewDeck = () => {
   fetch("https://deckofcardsapi.com/api/deck/new/")
     .then((res) => res.json())
     .then((data) => {
+      reamingCardsText.textContent =`Remaining Cards:  ${data.remaining}`
       console.log(data);
       deckId = data.deck_id;
     });
