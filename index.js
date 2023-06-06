@@ -4,7 +4,16 @@ const newDeckBtn = document.getElementById("new-deck");
 const drawBtn = document.getElementById("draw-cards");
 const winnerHTMLText= document.getElementById("winner-message")
 const reamingCardsText = document.getElementById("remaining-cards")
+const computerScoreText =document.getElementById("computer-score")
+const playerScoreText =document.getElementById("player-score")
+
 let deckId;
+
+let scoreBored = {
+    "Computer": 0,
+    "Player": 0
+  };
+  
  
 const determineWinner = (cpuCard, playerCard) =>{
     const cardValues = {
@@ -25,10 +34,14 @@ const determineWinner = (cpuCard, playerCard) =>{
     const cpuCardValue = cardValues[cpuCard]
     const playerCardValue = cardValues[playerCard]
     if( cpuCardValue<playerCardValue){
-        return `Computer Wins the Round!`
+        scoreBored["Player"]++;
+        playerScoreText.innerText= `Player score: ${scoreBored["Player"]}`
+        return  `Player Wins the Round!`
     }
     else if(  cpuCardValue>playerCardValue){
-        return `Player Wins the Round!`
+        scoreBored["Computer"]++;
+        computerScoreText.innerText= `Computer score: ${scoreBored["Computer"]}`
+        return `Computer Wins the Round!`
     }
     else{
          return `WAR!`
@@ -53,7 +66,7 @@ const handleDrawCards = () => {
 };
 
 const handleNewDeck = () => {
-  fetch("https://deckofcardsapi.com/api/deck/new/")
+  fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
     .then((res) => res.json())
     .then((data) => {
       reamingCardsText.textContent =`Remaining Cards:  ${data.remaining}`
