@@ -46,6 +46,10 @@ body {
     background-color: #33FF33;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 
 div.card-slot {
     border: 1px solid black;

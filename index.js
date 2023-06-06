@@ -46,6 +46,9 @@ const handleDrawCards = () => {
       const winnerMessage=determineWinner(cpuCard, playerCard);
       reamingCardsText.textContent =`Remaining Cards:  ${data.remaining}`
       winnerHTMLText.textContent=winnerMessage;
+      if(data.remaining === 0){
+        drawBtn.disabled = true
+      }
     });
 };
 
