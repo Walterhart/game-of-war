@@ -15,6 +15,7 @@ let scoreBored = {
   Player: 0,
 };
 
+ // Function to handle the restart game functionality
 const handleRestartGame = () => {
   newDeckBtn.classList.remove("hidden");
   restartGameBtn.classList.add("hidden");
@@ -28,6 +29,7 @@ const handleRestartGame = () => {
   };
 };
 
+ // Function to determine the winner based on the card values
 const determineWinner = (cpuCard, playerCard) => {
   const cardValues = {
     2: 2,
@@ -59,6 +61,23 @@ const determineWinner = (cpuCard, playerCard) => {
   }
 };
 
+  // Function to display images of cards on the UI
+  const getImage = (deck) => {
+    const cardSlotsHTML = deck.cards.map(
+      (card) => `
+        <img src="${card.image}" class="card" />
+    `
+    );
+  
+    const cardSlots = imageContainer.children;
+  
+    cardSlotsHTML.forEach((html, index) => {
+      cardSlots[index].innerHTML = html;
+    });
+  };
+  
+
+ // Function to handle drawing cards from the deck
 const handleDrawCards = () => {
   if (!deckId) {
     return;
@@ -86,6 +105,7 @@ const handleDrawCards = () => {
     });
 };
 
+  // Function to handle creating a new deck
 const handleNewDeck = () => {
   fetch("https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1")
     .then((res) => res.json())
@@ -97,19 +117,6 @@ const handleNewDeck = () => {
     });
 };
 
-const getImage = (deck) => {
-  const cardSlotsHTML = deck.cards.map(
-    (card) => `
-      <img src="${card.image}" class="card" />
-  `
-  );
-
-  const cardSlots = imageContainer.children;
-
-  cardSlotsHTML.forEach((html, index) => {
-    cardSlots[index].innerHTML = html;
-  });
-};
 
 restartGameBtn.addEventListener("click", handleRestartGame);
 drawBtn.addEventListener("click", handleDrawCards);
